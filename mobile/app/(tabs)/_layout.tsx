@@ -22,13 +22,6 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="categories"
-        options={{
-          title: "Sections",
-          tabBarIcon: () => <TabIcon symbol="🗂️" />,
-        }}
-      />
-      <Tabs.Screen
         name="subscribe"
         options={{
           title: "Subscribe",

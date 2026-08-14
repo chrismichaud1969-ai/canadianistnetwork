@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categories } from "@/lib/articles";
+import { slugifyCategory } from "@/lib/articles";
 import { SITE_NAME } from "@/lib/config";
 
 export default function Footer() {
@@ -20,16 +20,14 @@ export default function Footer() {
             Sections
           </p>
           <ul className="mt-3 space-y-2">
-            {categories.map((category) => (
-              <li key={category}>
-                <Link
-                  href={`/category/${category.toLowerCase()}`}
-                  className="text-sm text-zinc-500 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-500"
-                >
-                  {category}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link
+                href={`/category/${slugifyCategory("Major News")}`}
+                className="text-sm text-zinc-500 hover:text-red-600 dark:text-zinc-400 dark:hover:text-red-500"
+              >
+                Major News
+              </Link>
+            </li>
           </ul>
         </div>
 

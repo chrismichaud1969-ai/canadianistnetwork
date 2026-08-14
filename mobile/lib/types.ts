@@ -1,10 +1,4 @@
-export type Category =
-  | "Politics"
-  | "Business"
-  | "Culture"
-  | "Sports"
-  | "Technology"
-  | "World";
+export type Category = "Major News";
 
 export type Article = {
   slug: string;
@@ -18,11 +12,8 @@ export type Article = {
   body: string[];
 };
 
-export const categories: Category[] = [
-  "Politics",
-  "Business",
-  "Culture",
-  "Sports",
-  "Technology",
-  "World",
-];
+export function slugifyCategory(category: string): string {
+  return category.toLowerCase().replace(/\s+/g, "-");
+}
+
+export const categories: Category[] = ["Major News"];

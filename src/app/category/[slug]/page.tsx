@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ArticleCard from "@/components/ArticleCard";
-import { categories, getArticlesByCategory } from "@/lib/articles";
+import { categories, getArticlesByCategory, slugifyCategory } from "@/lib/articles";
 
 export function generateStaticParams() {
-  return categories.map((category) => ({ slug: category.toLowerCase() }));
+  return categories.map((category) => ({ slug: slugifyCategory(category) }));
 }
 
 function resolveCategory(slug: string) {
-  return categories.find((c) => c.toLowerCase() === slug.toLowerCase());
+  return categories.find((c) => slugifyCategory(c) === slug.toLowerCase());
 }
 
 export async function generateMetadata({

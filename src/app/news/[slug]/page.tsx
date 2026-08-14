@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ArticleCard from "@/components/ArticleCard";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import { getAllArticles, getArticleBySlug, slugifyCategory } from "@/lib/articles";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-CA", {
@@ -46,7 +46,7 @@ export default async function ArticlePage({
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <Link
-        href={`/category/${article.category.toLowerCase()}`}
+        href={`/category/${slugifyCategory(article.category)}`}
         className="inline-block rounded-full bg-red-600/10 px-2.5 py-0.5 text-xs font-semibold text-red-600"
       >
         {article.category}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categories } from "@/lib/articles";
+import { slugifyCategory } from "@/lib/articles";
 import { SITE_NAME } from "@/lib/config";
 
 export default function Header() {
@@ -16,15 +16,12 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {categories.map((category) => (
-            <Link
-              key={category}
-              href={`/category/${category.toLowerCase()}`}
-              className="text-sm font-medium text-zinc-600 transition hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-500"
-            >
-              {category}
-            </Link>
-          ))}
+          <Link
+            href={`/category/${slugifyCategory("Major News")}`}
+            className="text-sm font-medium text-zinc-600 transition hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-500"
+          >
+            Major News
+          </Link>
         </nav>
 
         <Link
@@ -34,18 +31,6 @@ export default function Header() {
           Subscribe
         </Link>
       </div>
-
-      <nav className="flex gap-4 overflow-x-auto border-t border-black/5 px-4 py-2 text-sm sm:px-6 md:hidden">
-        {categories.map((category) => (
-          <Link
-            key={category}
-            href={`/category/${category.toLowerCase()}`}
-            className="whitespace-nowrap font-medium text-zinc-600 hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-500"
-          >
-            {category}
-          </Link>
-        ))}
-      </nav>
     </header>
   );
 }

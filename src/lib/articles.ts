@@ -1,10 +1,4 @@
-export type Category =
-  | "Politics"
-  | "Business"
-  | "Culture"
-  | "Sports"
-  | "Technology"
-  | "World";
+export type Category = "Major News";
 
 export type Article = {
   slug: string;
@@ -18,6 +12,10 @@ export type Article = {
   body: string[];
 };
 
+export function slugifyCategory(category: string): string {
+  return category.toLowerCase().replace(/\s+/g, "-");
+}
+
 // NOTE: This is placeholder editorial content so the site has something to
 // render out of the box. Swap this module for a real CMS or API feed
 // (Sanity, Contentful, WordPress REST API, etc.) when you're ready — every
@@ -28,7 +26,7 @@ export const articles: Article[] = [
     slug: "ottawa-unveils-housing-plan",
     title: "Ottawa Unveils New National Housing Plan",
     dek: "The federal government says the strategy will fast-track construction in major cities facing acute supply shortages.",
-    category: "Politics",
+    category: "Major News",
     author: "Marie Tremblay",
     publishedAt: "2026-07-29",
     readMinutes: 5,
@@ -43,7 +41,7 @@ export const articles: Article[] = [
     slug: "loonie-steadies-after-rate-decision",
     title: "Loonie Steadies After Bank of Canada Rate Decision",
     dek: "The central bank held its policy rate steady, citing cooling inflation and a softening labour market.",
-    category: "Business",
+    category: "Major News",
     author: "Daniel Okafor",
     publishedAt: "2026-07-28",
     readMinutes: 4,
@@ -58,7 +56,7 @@ export const articles: Article[] = [
     slug: "toronto-film-festival-lineup",
     title: "Homegrown Films Headline This Year's Festival Lineup",
     dek: "A record number of Canadian features made the cut, organizers say, as the festival leans into local storytelling.",
-    category: "Culture",
+    category: "Major News",
     author: "Priya Nair",
     publishedAt: "2026-07-27",
     readMinutes: 3,
@@ -72,7 +70,7 @@ export const articles: Article[] = [
     slug: "raptors-trade-deadline-moves",
     title: "Raptors Make Moves Ahead of Trade Deadline",
     dek: "The front office added size and playoff experience in a flurry of deadline-day trades.",
-    category: "Sports",
+    category: "Major News",
     author: "Jordan Wick",
     publishedAt: "2026-07-26",
     readMinutes: 4,
@@ -86,7 +84,7 @@ export const articles: Article[] = [
     slug: "waterloo-startup-ai-chips",
     title: "Waterloo Startup Raises Series B for Efficient AI Chips",
     dek: "The company says its low-power inference chips could cut data centre energy use significantly.",
-    category: "Technology",
+    category: "Major News",
     author: "Sam Levesque",
     publishedAt: "2026-07-25",
     readMinutes: 5,
@@ -101,7 +99,7 @@ export const articles: Article[] = [
     slug: "arctic-shipping-route-talks",
     title: "Arctic Nations Meet Over Shipping Route Rules",
     dek: "Talks focused on safety standards and Indigenous consultation as traffic through northern waters increases.",
-    category: "World",
+    category: "Major News",
     author: "Marie Tremblay",
     publishedAt: "2026-07-24",
     readMinutes: 6,
@@ -115,7 +113,7 @@ export const articles: Article[] = [
     slug: "wildfire-season-outlook",
     title: "Forecasters Warn of Above-Average Wildfire Risk",
     dek: "Dry conditions across the West are raising early concerns heading into peak fire season.",
-    category: "World",
+    category: "Major News",
     author: "Daniel Okafor",
     publishedAt: "2026-07-23",
     readMinutes: 4,
@@ -129,7 +127,7 @@ export const articles: Article[] = [
     slug: "small-business-export-boom",
     title: "Small Exporters Ride Wave of New Trade Deals",
     dek: "Recent trade agreements are opening doors for smaller manufacturers looking beyond the U.S. market.",
-    category: "Business",
+    category: "Major News",
     author: "Priya Nair",
     publishedAt: "2026-07-22",
     readMinutes: 4,
@@ -156,16 +154,10 @@ export function getArticleBySlug(slug: string): Article | undefined {
 }
 
 export function getArticlesByCategory(category: string): Article[] {
+  const targetSlug = slugifyCategory(category);
   return getAllArticles().filter(
-    (a) => a.category.toLowerCase() === category.toLowerCase()
+    (a) => slugifyCategory(a.category) === targetSlug
   );
 }
 
-export const categories: Category[] = [
-  "Politics",
-  "Business",
-  "Culture",
-  "Sports",
-  "Technology",
-  "World",
-];
+export const categories: Category[] = ["Major News"];

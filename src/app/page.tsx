@@ -1,12 +1,11 @@
+import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import NewsletterForm from "@/components/NewsletterForm";
-import { getAllArticles, getFeaturedArticles } from "@/lib/articles";
+import { getFeaturedArticles, slugifyCategory } from "@/lib/articles";
 
 export default function Home() {
   const featured = getFeaturedArticles();
-  const latest = getAllArticles();
-  const [lead, ...restFeatured] = featured;
-  const rest = latest.filter((a) => a.slug !== lead?.slug);
+  const [lead, ...rest] = featured;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-8 sm:px-6">
@@ -16,13 +15,10 @@ export default function Home() {
         </section>
       )}
 
-      {restFeatured.length > 0 && (
-        <section className="mb-12">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">
-            Top Stories
-          </h2>
+      {rest.length > 0 && (
+        <section className="mb-8">
           <div className="grid gap-4 sm:grid-cols-2">
-            {restFeatured.map((article) => (
+            {rest.map((article) => (
               <ArticleCard key={article.slug} article={article} />
             ))}
           </div>
@@ -30,14 +26,12 @@ export default function Home() {
       )}
 
       <section className="mb-12">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-400">
-          Latest News
-        </h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))}
-        </div>
+        <Link
+          href={`/category/${slugifyCategory("Major News")}`}
+          className="text-sm font-semibold text-red-600 hover:text-red-700"
+        >
+          See more stories →
+        </Link>
       </section>
 
       <section>

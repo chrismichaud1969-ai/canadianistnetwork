@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
 import ArticleListItem from "../../components/ArticleListItem";
 import { fetchArticles } from "../../lib/api";
+import { categories, slugifyCategory } from "../../lib/types";
 import type { Article } from "../../lib/types";
 
 export default function CategoryScreen() {
@@ -19,7 +20,8 @@ export default function CategoryScreen() {
     };
   }, [slug]);
 
-  const title = slug ? slug[0].toUpperCase() + slug.slice(1) : "Section";
+  const title =
+    categories.find((c) => slugifyCategory(c) === slug) ?? "Section";
 
   if (!articles) {
     return (
