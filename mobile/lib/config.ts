@@ -8,7 +8,7 @@
 export const API_BASE_URL =
   process.env.EXPO_PUBLIC_API_BASE_URL ?? "https://thecanadianist.news";
 
-export const RADIO_STREAM_URL = "https://s5.radio.co/s246004886/listen";
+export const RADIO_STREAM_URL = "https://s5.radio.co/s7aa56b3e9/listen";
 export const RADIO_STATION_NAME = "The Canadianist Radio";
 
 export const APP_NAME = "The Canadianist";
