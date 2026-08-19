@@ -36,6 +36,14 @@ export default function TabsLayout() {
           tabBarIcon: () => <TabIcon symbol="✉️" />,
         }}
       />
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: "Account",
+          headerTitle: "Account",
+          tabBarIcon: () => <TabIcon symbol="👤" />,
+        }}
+      />
     </Tabs>
   );
 }
