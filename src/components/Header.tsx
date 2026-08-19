@@ -14,7 +14,13 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Section nav (table of contents) comes in a later pass. */}
+        {/* Full section nav (table of contents) comes in a later pass. */}
+        <Link
+          href="/schedule"
+          className="text-sm font-medium text-zinc-600 transition hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-500"
+        >
+          Schedule
+        </Link>
 
         <Link
           href="/#newsletter"

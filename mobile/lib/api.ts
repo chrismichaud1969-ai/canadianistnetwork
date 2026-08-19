@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "./config";
 import type { Article } from "./types";
+import type { ScheduleEntry } from "./schedule";
 
 async function getJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`);
@@ -20,6 +21,11 @@ export async function fetchArticle(slug: string): Promise<Article> {
     `/api/articles/${encodeURIComponent(slug)}`
   );
   return data.article;
+}
+
+export async function fetchSchedule(): Promise<ScheduleEntry[]> {
+  const data = await getJson<{ schedule: ScheduleEntry[] }>("/api/schedule");
+  return data.schedule;
 }
 
 export async function subscribe(

@@ -22,6 +22,14 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="schedule"
+        options={{
+          title: "Schedule",
+          headerTitle: "Schedule",
+          tabBarIcon: () => <TabIcon symbol="🗓️" />,
+        }}
+      />
+      <Tabs.Screen
         name="subscribe"
         options={{
           title: "Subscribe",
