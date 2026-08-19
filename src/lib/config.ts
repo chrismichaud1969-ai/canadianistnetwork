@@ -1,5 +1,5 @@
 // Single place to update the live stream if it ever changes.
-export const RADIO_STREAM_URL = "https://s5.radio.co/s7aa56b3e9/listen";
+export const RADIO_STREAM_URL = "https://streaming.live365.com/a24798";
 export const RADIO_STATION_NAME = "The Canadianist Radio";
 
 export const SITE_NAME = "The Canadianist";
