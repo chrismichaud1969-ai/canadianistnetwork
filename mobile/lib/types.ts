@@ -1,4 +1,11 @@
-export type Category = "Major News";
+export type Category =
+  | "Radio Featured"
+  | "Featured"
+  | "Toronto"
+  | "Montreal, West Island"
+  | "National Politics"
+  | "Opinion"
+  | "Journeys";
 
 export type Article = {
   slug: string;
@@ -8,12 +15,20 @@ export type Article = {
   author: string;
   publishedAt: string;
   readMinutes: number;
-  featured?: boolean;
   body: string[];
 };
 
 export function slugifyCategory(category: string): string {
-  return category.toLowerCase().replace(/\s+/g, "-");
+  return category.toLowerCase().replace(/[,\s]+/g, "-").replace(/-+$/, "");
 }
 
-export const categories: Category[] = ["Major News"];
+// Homepage order: one post per section, in this exact sequence.
+export const categories: Category[] = [
+  "Radio Featured",
+  "Featured",
+  "Toronto",
+  "Montreal, West Island",
+  "National Politics",
+  "Opinion",
+  "Journeys",
+];

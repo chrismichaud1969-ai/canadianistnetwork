@@ -1,9 +1,7 @@
-import { Link } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
-  Pressable,
   RefreshControl,
   StyleSheet,
   Text,
@@ -11,8 +9,19 @@ import {
 } from "react-native";
 import ArticleListItem from "../../components/ArticleListItem";
 import { fetchArticles } from "../../lib/api";
-import { slugifyCategory } from "../../lib/types";
+import { categories, slugifyCategory } from "../../lib/types";
 import type { Article } from "../../lib/types";
+
+// Homepage shows one post per section, in the order defined by `categories`
+// (Radio Featured, Featured, Toronto, Montreal/West Island, National
+// Politics, Opinion, Journeys) — mirrors the website's home page.
+function toHomepageFeed(all: Article[]): Article[] {
+  return categories
+    .map((category) =>
+      all.find((a) => slugifyCategory(a.category) === slugifyCategory(category))
+    )
+    .filter((a): a is Article => Boolean(a));
+}
 
 export default function HomeScreen() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -24,7 +33,7 @@ export default function HomeScreen() {
     try {
       setError(null);
       const data = await fetchArticles();
-      setArticles(data.filter((a) => a.featured));
+      setArticles(toHomepageFeed(data));
     } catch {
       setError("Couldn't load stories. Pull down to try again.");
     } finally {
@@ -62,15 +71,6 @@ export default function HomeScreen() {
           tintColor="#dc2626"
         />
       }
-      ListFooterComponent={
-        articles.length > 0 ? (
-          <Link href={`/category/${slugifyCategory("Major News")}`} asChild>
-            <Pressable style={styles.seeMore}>
-              <Text style={styles.seeMoreText}>See more stories →</Text>
-            </Pressable>
-          </Link>
-        ) : null
-      }
       ListEmptyComponent={
         <View style={styles.center}>
           <Text style={styles.emptyText}>
@@ -96,14 +96,5 @@ const styles = StyleSheet.create({
   emptyText: {
     textAlign: "center",
     color: "#71717a",
-  },
-  seeMore: {
-    marginTop: 8,
-    paddingVertical: 12,
-  },
-  seeMoreText: {
-    color: "#dc2626",
-    fontWeight: "700",
-    fontSize: 14,
   },
 });

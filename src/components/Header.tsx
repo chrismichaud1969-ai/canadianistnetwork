@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { slugifyCategory } from "@/lib/articles";
 import { SITE_NAME } from "@/lib/config";
 
 export default function Header() {
@@ -15,14 +14,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          <Link
-            href={`/category/${slugifyCategory("Major News")}`}
-            className="text-sm font-medium text-zinc-600 transition hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-500"
-          >
-            Major News
-          </Link>
-        </nav>
+        {/* Section nav (table of contents) comes in a later pass. */}
 
         <Link
           href="/#newsletter"
