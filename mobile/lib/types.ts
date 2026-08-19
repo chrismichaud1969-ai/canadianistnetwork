@@ -3,7 +3,7 @@ export type Category =
   | "Featured"
   | "Toronto"
   | "Montreal, West Island"
-  | "National Politics"
+  | "Ottawa"
   | "Opinion"
   | "Journeys";
 
@@ -28,7 +28,7 @@ export const categories: Category[] = [
   "Featured",
   "Toronto",
   "Montreal, West Island",
-  "National Politics",
+  "Ottawa",
   "Opinion",
   "Journeys",
 ];

@@ -2,8 +2,8 @@ export type Category =
   | "Radio Featured"
   | "Featured"
   | "Toronto"
-  | "National Politics"
   | "Montreal, West Island"
+  | "Ottawa"
   | "Opinion"
   | "Journeys";
 
@@ -30,7 +30,7 @@ export function slugifyCategory(category: string): string {
 //
 // The home page shows one post per category, in the order defined by
 // `categories` below — one card each for Radio Featured, Featured, Toronto,
-// National Politics, Montreal/West Island, Opinion, and Journeys.
+// Montreal/West Island, Ottawa, Opinion, and Journeys.
 export const articles: Article[] = [
   {
     slug: "morning-drive-mayor-transit-funding",
@@ -77,8 +77,8 @@ export const articles: Article[] = [
   {
     slug: "federal-budget-talks-resume",
     title: "Federal Budget Talks Resume as Opposition Pushes for Amendments",
-    dek: "MPs return to Ottawa this week with spending, housing, and defence commitments still unresolved.",
-    category: "National Politics",
+    dek: "MPs return to Parliament Hill this week with spending, housing, and defence commitments still unresolved.",
+    category: "Ottawa",
     author: "Daniel Okafor",
     publishedAt: "2026-08-10",
     readMinutes: 5,
@@ -155,7 +155,7 @@ export const categories: Category[] = [
   "Featured",
   "Toronto",
   "Montreal, West Island",
-  "National Politics",
+  "Ottawa",
   "Opinion",
   "Journeys",
 ];
